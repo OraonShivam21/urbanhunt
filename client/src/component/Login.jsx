@@ -1,8 +1,10 @@
 
 import { useEffect, useRef, useState } from "react"
+import { useNavigate } from 'react-router-dom';
 
 function Login()
 {
+    const navigate = useNavigate();
     const url='http://localhost:8080'
     const loginref=[useRef(null),useRef(null)]
     const[obj,setObj]=useState({})
@@ -20,6 +22,11 @@ function Login()
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+            if(data.msg==="login successfull")
+            {
+                localStorage.setItem('token',data.token)
+                navigate('/dashboard');
+            }
         })
         .catch(err=>console.log(err))
     },[obj])
