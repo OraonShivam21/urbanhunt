@@ -47,7 +47,7 @@ res.status(404).json({msg:'user not found, signup please'})
    if(result)
    {
     const token=jwt.sign({userID:user._id},"masai")
-    res.status(200).json({msg:'login successfull',token})
+    res.status(200).json({msg:'login successfull',token,role:user.role})
    }else{
     res.status(200).json({msg:'wrong password'})
    }

@@ -1,15 +1,19 @@
 
 import { useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Signup()
 {
+    const navigate=useNavigate()
     const url='http://localhost:8080'
     const signupref=[useRef(null),useRef(null),useRef(null)]
-    const[obj,setObj]=useState({})
+    const[obj,setObj]=useState(null)
     useEffect(()=>{
         signupref[0].current.focus()
     },[])
     useEffect(()=>{
+       if(obj)
+       {
         fetch(`${url}/users/signup`,{
             method:"POST",
             headers:{
@@ -20,8 +24,15 @@ function Signup()
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+            if(data.msg==='register successfull')
+            {
+                navigate('/login')
+            }else{
+                alert('error')
+            }
         })
         .catch(err=>console.log(err))
+       }
     },[obj])
 
     const signupclick=()=>{

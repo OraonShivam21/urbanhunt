@@ -4,6 +4,7 @@ import Login from "./Login"
 import Signup from "./Signup"
 import Home from "./Home"
 import Dashboard from "./Dashboard"
+import Addproduct from "./Addproduct"
 function Router()
 {
     return(
@@ -14,6 +15,7 @@ function Router()
         <Route path="/login" element={ <Login/> } />
         <Route path="/admindashboard" element={ <Admindash/> } />
         <Route path="/dashboard" element={ <Dashboard/> } />
+        <Route path="/addproduct" element={ <Addproduct/> } />
       </Routes>
         </>
     )
